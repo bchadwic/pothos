@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -14,5 +15,9 @@ func main() {
 type Handler struct{}
 
 func (handler *Handler) ServeHTTP(resp http.ResponseWriter, req *http.Request) {
-	resp.Write([]byte("hello!"))
+	body, err := os.ReadFile("./resources/index.html")
+	if err != nil {
+		panic(err)
+	}
+	resp.Write(body)
 }
