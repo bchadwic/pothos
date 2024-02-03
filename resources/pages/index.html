@@ -5,24 +5,23 @@
          name="viewport" content="width=device-width, initial-scale=1">
       <title>Pothos</title>
       <link rel="stylesheet" href="/stylesheets/index.css">
-      <link rel="shortcut icon" type="image/jpg" href="favicon.JPG"/>
-      <style>
-      </style>
    </head>
    <body class="container">
         <div class="navbar">
             <h1 class="title">🌿 Pothos</h1>
         </div>
         <div class="posts">
-            {{range .Posts}}
-                <div class="post">
-                    <div class="post-title">
-                        <p>{{.Title}}</p>
+            {{ range $key, $value := .Posts }}
+                <a class="post-link" href={{ (printf "/post/%s" $key) }}>
+                    <div class="post">
+                        <div class="post-title">
+                            <p>{{.Title}}</p>
+                        </div>
+                        <div class="post-preview">
+                            <p>{{.Description}}</p>
+                        </div>
                     </div>
-                    <div class="post-preview">
-                        <p>{{.Description}}</p>
-                    </div>
-                </div>
+                </a>
             {{end}}
         </div>
    </body>
